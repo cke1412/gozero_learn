@@ -3,8 +3,8 @@ package logic
 import (
 	"context"
 
-	"zero_study/api_study/user/api/internal/svc"
-	"zero_study/api_study/user/api/internal/types"
+	"zero_study/api_study/user/api_v2/internal/svc"
+	"zero_study/api_study/user/api_v2/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -22,15 +22,11 @@ func NewUserInfoLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UserInfo
 		svcCtx: svcCtx,
 	}
 }
-
 func (l *UserInfoLogic) UserInfo() (resp *types.UserInfoResponse, err error) {
+	// todo: add your logic here and delete this line
 
 	return &types.UserInfoResponse{
-		Code: 0,
-		Data: types.UserInfo{
-			UserId:   1,
-			Username: "ckck",
-		},
-		Msg: "Succcess",
+		UserId:   66,
+		Username: "ckckck",
 	}, nil
 }

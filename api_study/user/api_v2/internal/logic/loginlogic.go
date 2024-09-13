@@ -3,8 +3,8 @@ package logic
 import (
 	"context"
 
-	"zero_study/api_study/user/api/internal/svc"
-	"zero_study/api_study/user/api/internal/types"
+	"zero_study/api_study/user/api_v2/internal/svc"
+	"zero_study/api_study/user/api_v2/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -23,11 +23,8 @@ func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic 
 	}
 }
 
-func (l *LoginLogic) Login(req *types.LoginRequest) (resp *types.LoginResponse, err error) {
+func (l *LoginLogic) Login(req *types.LoginRequest) (resp string, err error) {
+	// todo: add your logic here and delete this line
 
-	return &types.LoginResponse{
-		Code: 0,
-		Data: "xxx.xxx.xxx",
-		Msg:  "Success",
-	}, nil
+	return "xxx.xxx.xxx.xxx", nil
 }

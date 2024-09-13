@@ -1,6 +1,6 @@
 module zero_study
 
-go 1.19
+go 1.23
 
 require github.com/zeromicro/go-zero v1.7.2
 
