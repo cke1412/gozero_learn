@@ -6,6 +6,8 @@ import (
 	"time"
 )
 
+//该文件没看懂
+
 type JwtPayLoad struct {
 	UserID   uint   `json:"user_id"`
 	Username string `json:"username"` // 用户名
