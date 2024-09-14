@@ -2,12 +2,13 @@ package handler
 
 import (
 	"net/http"
-	"zero_study/common/response"
 
 	"github.com/zeromicro/go-zero/rest/httpx"
-	"zero_study/api_study/user/api_v2/internal/logic"
-	"zero_study/api_study/user/api_v2/internal/svc"
-	"zero_study/api_study/user/api_v2/internal/types"
+	"zero_study/api_study/user/api_jwt/internal/logic"
+	"zero_study/api_study/user/api_jwt/internal/svc"
+	"zero_study/api_study/user/api_jwt/internal/types"
+
+	"zero_study/common/response"
 )
 
 func loginHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
@@ -20,6 +21,11 @@ func loginHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 
 		l := logic.NewLoginLogic(r.Context(), svcCtx)
 		resp, err := l.Login(&req)
+		//if err != nil {
+		//	httpx.ErrorCtx(r.Context(), w, err)
+		//} else {
+		//	httpx.OkJsonCtx(r.Context(), w, resp)
+		//}
 		response.Response(w, r, resp, err)
 	}
 }
