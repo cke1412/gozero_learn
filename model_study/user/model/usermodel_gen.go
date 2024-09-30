@@ -25,6 +25,7 @@ type (
 		Insert(ctx context.Context, data *User) (sql.Result, error)
 		FindOne(ctx context.Context, id int64) (*User, error)
 		FindOneByUsername(ctx context.Context, username string) (*User, error)
+		FindOneByUsernameAndPassword(ctx context.Context, username string, password string) (*User, error)
 		Update(ctx context.Context, data *User) error
 		Delete(ctx context.Context, id int64) error
 	}
@@ -72,6 +73,20 @@ func (m *defaultUserModel) FindOneByUsername(ctx context.Context, username strin
 	var resp User
 	query := fmt.Sprintf("select %s from %s where `username` = ? limit 1", userRows, m.table)
 	err := m.conn.QueryRowCtx(ctx, &resp, query, username)
+	switch err {
+	case nil:
+		return &resp, nil
+	case sqlx.ErrNotFound:
+		return nil, ErrNotFound
+	default:
+		return nil, err
+	}
+}
+
+func (m *defaultUserModel) FindOneByUsernameAndPassword(ctx context.Context, username string, password string) (*User, error) {
+	var resp User
+	query := fmt.Sprintf("select %s from %s where `username` = ? and `password` = ? limit 1", userRows, m.table)
+	err := m.conn.QueryRowCtx(ctx, &resp, query, username, password)
 	switch err {
 	case nil:
 		return &resp, nil

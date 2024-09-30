@@ -16,7 +16,7 @@ func Response(w http.ResponseWriter, r *http.Request, res any, err error) {
 		body := Body{
 			Code: 10086,
 			Data: nil,
-			Msg:  "Wrong",
+			Msg:  err.Error(),
 		}
 		httpx.WriteJson(w, http.StatusOK, body)
 		return
